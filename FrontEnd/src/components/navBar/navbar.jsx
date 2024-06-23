@@ -30,7 +30,7 @@ export default function NavBar() {
     <nav className="fixed inset-x-0 top-0 z-50 bg-white shadow-sm dark:bg-gray-950/90">
       <div className="w-full max-w-7xl mx-auto px-4">
         <div className="flex justify-between h-14 items-center">
-          <Link to="#" className="flex items-center">
+          <Link to="/" className="flex items-center">
             <MountainIcon className="h-6 w-6" />
             <span className="sr-only">Acme Inc</span>
           </Link>
@@ -39,42 +39,42 @@ export default function NavBar() {
               to="/"
               className="font-medium flex items-center text-sm transition-colors hover:underline"
             >
-              Home
+              Trang chủ
             </Link>
             <Link
               to="/about"
               className="font-medium flex items-center text-sm transition-colors hover:underline"
             >
-              About
+              Giới thiệu
             </Link>
             <Link
               to="/services"
               className="font-medium flex items-center text-sm transition-colors hover:underline"
             >
-              Services
+              Dịch vụ
             </Link>
             <Link
               to="/contact"
               className="font-medium flex items-center text-sm transition-colors hover:underline"
             >
-              Contact
+              Liên hệ
             </Link>
           </nav>
           <div className="flex items-center gap-4">
             {!isLoggedIn ? (
               <>
                 <Button variant="outline" size="sm">
-                  <Link to="/login">Login</Link>
+                  <Link to="/login">Đăng nhập</Link>
                 </Button>
                 <Button size="sm">
-                  <Link to="/register">Register</Link>
+                  <Link to="/register">Đăng ký</Link>
                 </Button>
               </>
             ) : (
               <>
                 <span>Welcome, {name}</span>
                 <Button size="sm" onClick={handleLogout}>
-                  Logout
+                  Đăng xuất
                 </Button>
               </>
             )}

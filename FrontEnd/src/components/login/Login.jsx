@@ -4,8 +4,8 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { loginMember } from "../../api/login";
 import { toast } from "../ui/use-toast";
+import { SignInAccount } from "../../api/ApiConfig";
 
 export default function LoginComponent() {
   const [memberName, setMemberName] = useState("");
@@ -37,7 +37,8 @@ export default function LoginComponent() {
     }
     if (!hasError) {
       try {
-        const response = await loginMember(memberName, password);
+        const response = await SignInAccount(memberName, password);
+        console.log(response);
         if (response.status === 200) {
           toast({
             title: "Success, you are logged in!✅",
@@ -52,7 +53,7 @@ export default function LoginComponent() {
           navigate("/");
         }
       } catch (err) {
-        if (err.status === 404) {
+        if (err.response.status === 404) {
           toast({
             title: "Error❌",
             description: "Wrong member name or password.",
@@ -66,19 +67,19 @@ export default function LoginComponent() {
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-br">
       <div className="mx-auto max-w-md space-y-6">
         <div className="space-y-2 text-center">
-          <h1 className="text-3xl font-bold">Welcome Back</h1>
+          <h1 className="text-3xl font-bold">Chào mừng trở lại</h1>
           <p
             className="text-muted-foreground font-semibold"
             style={{ color: "#1A2130" }}
           >
-            Enter your account and password to access your account.
+            Vui lòng nhập tài khoản mật khẩu của bạn để đăng nhập.
           </p>
         </div>
         <Card>
           <form onSubmit={handleSubmitLogin}>
             <CardContent className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="memberName">Member Name</Label>
+                <Label htmlFor="memberName">Tên đăng nhập</Label>
                 <Input
                   id="memberName"
                   value={memberName}
@@ -90,7 +91,7 @@ export default function LoginComponent() {
                 )}
               </div>
               <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
+                <Label htmlFor="password">Mật khẩu</Label>
                 <Input
                   id="password"
                   type="password"
@@ -105,14 +106,14 @@ export default function LoginComponent() {
             </CardContent>
             <CardFooter>
               <Button type="submit" className="w-full">
-                Sign In
+                Đăng nhập
               </Button>
             </CardFooter>
           </form>
         </Card>
         <div className="flex justify-between text-sm">
           <Link to="/register" className="underline underline-offset-2">
-            Create an Account
+            Chưa có tài khoản? đăng ký ngay
           </Link>
         </div>
       </div>
