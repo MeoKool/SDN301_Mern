@@ -16,7 +16,6 @@ export const loginMember = async (memberName, password) => {
     );
     return response;
   } catch (error) {
-    console.error("There was a problem with your fetch operation:", error);
-    throw error;
+    throw error.response;
   }
 };

@@ -5,6 +5,7 @@ import { Button } from "../ui/button";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { loginMember } from "../../api/login";
+import { toast } from "../ui/use-toast";
 
 export default function LoginComponent() {
   const [memberName, setMemberName] = useState("");
@@ -13,7 +14,7 @@ export default function LoginComponent() {
   const [passwordError, setPasswordError] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
+  const handleSubmitLogin = async (e) => {
     e.preventDefault();
     let hasError = false;
     if (!memberName) {
@@ -38,19 +39,31 @@ export default function LoginComponent() {
       try {
         const response = await loginMember(memberName, password);
         if (response.status === 200) {
-          console.log(response.data);
+          toast({
+            title: "Success, you are logged in!✅",
+            description: "You are now logged in.",
+          });
+          sessionStorage.setItem("accessToken", response.data.accessToken);
+          sessionStorage.setItem("id", response.data.id);
+          sessionStorage.setItem("memberName", response.data.memberName);
+          sessionStorage.setItem("name", response.data.name);
+          sessionStorage.setItem("admin", response.data.admin);
+
           navigate("/");
-        } else {
-          // Xử lý các trường hợp khác
         }
       } catch (err) {
-        console.error(err);
+        if (err.status === 404) {
+          toast({
+            title: "Error❌",
+            description: "Wrong member name or password.",
+          });
+        }
       }
     }
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-[#83B4FF] to-[#1A2130]">
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br">
       <div className="mx-auto max-w-md space-y-6">
         <div className="space-y-2 text-center">
           <h1 className="text-3xl font-bold">Welcome Back</h1>
@@ -62,7 +75,7 @@ export default function LoginComponent() {
           </p>
         </div>
         <Card>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmitLogin}>
             <CardContent className="space-y-4">
               <div className="space-y-2">
                 <Label htmlFor="memberName">Member Name</Label>
