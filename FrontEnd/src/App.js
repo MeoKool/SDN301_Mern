@@ -4,6 +4,7 @@ import ErrorPage from "./pages/errorpage";
 import HomePage from "./pages/homepage";
 import Login from "./pages/login";
 import Register from "./pages/register";
+import DetailsWatches from "./pages/viewDetails";
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
       <Route path="/" element={<HomePage />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      <Route path="/details/:id" element={<Register />} />
+      <Route path="/details/:id" element={<DetailsWatches />} />
     </Routes>
   );
 }

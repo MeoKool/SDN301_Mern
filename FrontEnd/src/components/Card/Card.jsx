@@ -2,7 +2,6 @@ import { Button } from "../ui/button";
 import "../Card/styleCard.css";
 import { useNavigate } from "react-router-dom";
 export default function CardProduct(data) {
-  console.log(data.data);
   const navigate = useNavigate();
   const handleNavigate = () => {
     navigate(`/details/${data.data._id}`);

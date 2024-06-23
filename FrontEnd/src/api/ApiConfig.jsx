@@ -10,4 +10,7 @@ const SignInAccount = (memberName, password) => {
 const getAllWatches = () => {
   return instance.get(`watch/getAllWatches`);
 };
-export { SignInAccount, getAllWatches };
+const getWatchesById = (id) => {
+  return instance.get(`watch/getByIdWatches/${id}`);
+};
+export { SignInAccount, getAllWatches, getWatchesById };
