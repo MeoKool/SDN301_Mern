@@ -38,11 +38,9 @@ export default function LoginComponent() {
     if (!hasError) {
       try {
         const response = await SignInAccount(memberName, password);
-        console.log(response);
         if (response.status === 200) {
           toast({
-            title: "Success, you are logged in!✅",
-            description: "You are now logged in.",
+            title: "Thành công, bạn đã đăng nhập!✅",
           });
           sessionStorage.setItem("accessToken", response.data.accessToken);
           sessionStorage.setItem("id", response.data.id);
@@ -55,8 +53,8 @@ export default function LoginComponent() {
       } catch (err) {
         if (err.response.status === 404) {
           toast({
-            title: "Error❌",
-            description: "Wrong member name or password.",
+            title: "Thất bại❌",
+            description: "Sai tài khoản hoặc mật khẩu.",
           });
         }
       }

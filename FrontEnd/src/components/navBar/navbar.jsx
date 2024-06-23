@@ -21,8 +21,8 @@ export default function NavBar() {
     sessionStorage.clear();
     setIsLoggedIn(false);
     toast({
-      title: "Success✅",
-      description: "You have been logged out.",
+      title: "Thành công✅",
+      description: "Bạn đã đăng xuất.",
     });
   };
 
