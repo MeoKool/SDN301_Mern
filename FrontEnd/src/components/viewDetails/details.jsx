@@ -37,7 +37,7 @@ export default function Details({ data }) {
     <div className="grid md:grid-cols-2 gap-6 lg:gap-12 items-start max-w-6xl px-4 mx-auto py-6">
       <div className="grid gap-6 md:gap-10 items-start">
         <img
-          src="https://donghoduyanh.com/upload_images/images/2023/09/12/Top-100-anh-dong-ho-dep-1.jpg"
+          src={`http://localhost:5000/${data.image}`}
           alt="Elegant wristwatch"
           width={600}
           height={600}

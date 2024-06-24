@@ -10,7 +10,7 @@ export default function CardProduct(data) {
     <div className="bg-white rounded-lg shadow-lg overflow-hidden w-full max-w-sm">
       <div className="relative">
         <img
-          src="https://donghoduyanh.com/upload_images/images/2023/09/12/Top-100-anh-dong-ho-dep-1.jpg"
+          src={`http://localhost:5000/${data.data.image}`}
           alt="Product Image"
           width={500}
           height={400}
@@ -29,7 +29,7 @@ export default function CardProduct(data) {
             {data.data.price.toLocaleString("en-US")}VNĐ
           </span>
           <Button onClick={handleNavigate} size="sm">
-            Detail
+            Chi tiết
           </Button>
         </div>
       </div>

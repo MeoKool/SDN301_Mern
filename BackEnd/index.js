@@ -1,13 +1,14 @@
 const express = require("express");
-const cors = require("cors");
-const dotenv = require("dotenv");
 const mongoose = require("mongoose");
+const cors = require("cors");
 const cookieParser = require("cookie-parser");
+const bodyParser = require("body-parser");
+const path = require("path");
+
 const authRoutes = require("./routes/auth");
 const authWatches = require("./routes/watch");
 const authBrand = require("./routes/brand");
 const authComment = require("./routes/comment");
-const bodyParser = require("body-parser");
 
 const app = express();
 
@@ -27,7 +28,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.set("view engine", "ejs");
 app.set("views", "./views");
-app.use(express.static("public"));
+
+const staticDirPath =
+  "D:\\FPTU_SE\\SE_Semester_7\\SDN301m\\SDN301_Mern\\BackEnd";
+app.use(express.static(staticDirPath));
+
 //Router API
 app.use("/v1/auth", authRoutes);
 app.use("/v1/watch", authWatches);
