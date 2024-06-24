@@ -8,11 +8,14 @@ import submitFeedback from "./submitFeedback";
 
 import { toast } from "../ui/use-toast";
 import DeleteComment from "./deleteFeeback";
+import handleEditFeedback from "./editFeedback";
 
 export default function Details({ data }) {
   const comments = data.comments || [];
   const idLogin = sessionStorage.getItem("id");
   const [showModal, setShowModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [currentCommentId, setCurrentCommentId] = useState(null);
   const [rating, setRating] = useState(0);
   const [content, setContent] = useState("");
 
@@ -25,6 +28,10 @@ export default function Details({ data }) {
 
   const handleChange = (event) => {
     setContent(event.target.value);
+  };
+  const openEditModal = (id) => {
+    setCurrentCommentId(id);
+    setShowEditModal(true);
   };
   return (
     <div className="grid md:grid-cols-2 gap-6 lg:gap-12 items-start max-w-6xl px-4 mx-auto py-6">
@@ -52,22 +59,24 @@ export default function Details({ data }) {
           <CardHeader>
             <CardTitle>Đánh giá</CardTitle>
             <div className="flex justify-end">
-              <Button
-                onClick={() => {
-                  if (checkComments()) {
-                    toast({
-                      title: "Bạn chỉ được đánh giá một lần❌",
-                    });
-                  } else {
-                    setShowModal(true);
-                  }
-                }}
-                variant="outline"
-                size="sm"
-              >
-                <StarIcon className="w-4 h-4 mr-2" />
-                Viết đánh giá
-              </Button>
+              {idLogin && (
+                <Button
+                  onClick={() => {
+                    if (checkComments()) {
+                      toast({
+                        title: "Bạn chỉ được đánh giá một lần❌",
+                      });
+                    } else {
+                      setShowModal(true);
+                    }
+                  }}
+                  variant="outline"
+                  size="sm"
+                >
+                  <StarIcon className="w-4 h-4 mr-2" />
+                  Viết đánh giá
+                </Button>
+              )}
             </div>
           </CardHeader>
           <CardContent className="grid gap-6">
@@ -96,6 +105,7 @@ export default function Details({ data }) {
                               variant="ghost"
                               size="icon"
                               className="hover:bg-transparent text-muted-foreground hover:text-primary"
+                              onClick={() => openEditModal(comment._id)}
                             >
                               <FilePenIcon className="w-4 h-4" />
                               <span className="sr-only">Edit</span>
@@ -163,10 +173,67 @@ export default function Details({ data }) {
                   rating: rating,
                   content: content,
                 });
+
                 setShowModal(false);
               }}
+              disabled={!content.trim() || rating <= 0}
+              className={`px-4 py-2 rounded-md ${
+                !content.trim() || rating <= 0
+                  ? "opacity-50 cursor-not-allowed"
+                  : ""
+              }`}
             >
               Submit
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+      <Dialog open={showEditModal} onOpenChange={setShowEditModal}>
+        <DialogContent className="sm:max-w-[425px]">
+          <div className="flex flex-col items-center justify-center gap-4 py-8">
+            <div className="flex items-center gap-2">
+              {[...Array(5)].map((_, index) => (
+                <StarIcon
+                  key={index}
+                  className={`w-6 h-6 ${
+                    index < rating
+                      ? "fill-yellow-400 stroke-yellow-400"
+                      : "fill-muted stroke-muted-foreground"
+                  }`}
+                  onClick={() => setRating(index + 1)}
+                />
+              ))}
+            </div>
+            <Textarea
+              placeholder="Chỉnh sửa đánh giá của bạn"
+              className="w-full px-4 py-2 text-sm bg-muted rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+              value={content}
+              onChange={handleChange}
+            />
+          </div>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setShowEditModal(false)}>
+              Cancel
+            </Button>
+            <Button
+              onClick={() => {
+                handleEditFeedback({
+                  idWatch: data._id,
+                  idComment: currentCommentId,
+                  rating: rating,
+                  content: content.trim(),
+                  idMember: idLogin,
+                });
+                setShowEditModal(false);
+              }}
+              disabled={!content.trim() || rating <= 0}
+              className={`px-4 py-2 rounded-md ${
+                !content.trim() || rating <= 0
+                  ? "opacity-50 cursor-not-allowed"
+                  : ""
+              }`}
+            >
+              Update
             </Button>
           </DialogFooter>
         </DialogContent>
