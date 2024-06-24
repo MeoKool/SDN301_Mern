@@ -14,10 +14,19 @@ const getWatchesById = (id) => {
   return instance.get(`watch/getByIdWatches/${id}`);
 };
 const createFeedback = (idMember, idWatch, rating, content) => {
-  return customAxios.post(`feedback/${idWatch.id}/comments`, {
+  return customAxios.post(`feedback/${idWatch}/comments`, {
     rating,
     content,
     author: idMember,
   });
 };
-export { SignInAccount, getAllWatches, getWatchesById, createFeedback };
+const deleteFeedback = (idWatch, idComment) => {
+  return customAxios.delete(`feedback/${idWatch}/comments/${idComment}`);
+};
+export {
+  SignInAccount,
+  getAllWatches,
+  getWatchesById,
+  createFeedback,
+  deleteFeedback,
+};

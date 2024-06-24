@@ -5,13 +5,14 @@ import { Dialog, DialogContent, DialogFooter } from "../ui/dialog";
 import { Textarea } from "../ui/textarea";
 import { useParams } from "react-router-dom";
 import submitFeedback from "./submitFeedback";
+
 import { toast } from "../ui/use-toast";
+import DeleteComment from "./deleteFeeback";
 
 export default function Details({ data }) {
   const comments = data.comments || [];
   const idLogin = sessionStorage.getItem("id");
   const [showModal, setShowModal] = useState(false);
-  const idWatch = useParams();
   const [rating, setRating] = useState(0);
   const [content, setContent] = useState("");
 
@@ -103,6 +104,12 @@ export default function Details({ data }) {
                               variant="ghost"
                               size="icon"
                               className="hover:bg-transparent text-muted-foreground hover:text-destructive"
+                              onClick={() =>
+                                DeleteComment({
+                                  idWatch: data._id,
+                                  idComment: comment._id,
+                                })
+                              }
                             >
                               <TrashIcon className="w-4 h-4" />
                               <span className="sr-only">Delete</span>
@@ -152,7 +159,7 @@ export default function Details({ data }) {
               onClick={async () => {
                 await submitFeedback({
                   userId: idLogin,
-                  watchId: idWatch,
+                  watchId: data._id,
                   rating: rating,
                   content: content,
                 });

@@ -15,8 +15,13 @@ export default async function submitFeedback({
       });
     }
   } catch (error) {
-    toast({
-      title: "Lỗi khi đánh giá",
-    });
+    if (error.response.status === 401) {
+      toast({
+        title: "Bạn không có quyền để đánh giá",
+      });
+    } else
+      toast({
+        title: "Lỗi khi đánh giá",
+      });
   }
 }

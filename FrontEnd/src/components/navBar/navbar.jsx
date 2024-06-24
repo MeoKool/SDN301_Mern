@@ -72,7 +72,7 @@ export default function NavBar() {
               </>
             ) : (
               <>
-                <span>Welcome, {name}</span>
+                <span>Xin chào, {name}</span>
                 <Button size="sm" onClick={handleLogout}>
                   Đăng xuất
                 </Button>
