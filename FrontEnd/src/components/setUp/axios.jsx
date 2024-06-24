@@ -30,9 +30,9 @@ export const customAxios = axios.create({
 });
 customAxios.interceptors.request.use(
   (config) => {
-    const accessToken = JSON.parse(sessionStorage.getItem("accessToken"));
+    const accessToken = sessionStorage.getItem("accessToken");
     if (accessToken) {
-      config.headers["Authorization"] = `Bearer ${accessToken}`;
+      config.headers["token"] = `Bearer ${accessToken}`;
     }
     return config;
   },
@@ -42,7 +42,7 @@ customAxios.interceptors.request.use(
 );
 customAxios.interceptors.response.use(
   function (response) {
-    return response.data.data;
+    return response;
   },
   function (error) {
     return Promise.reject(error);
