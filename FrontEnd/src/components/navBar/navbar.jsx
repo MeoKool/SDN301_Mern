@@ -73,7 +73,10 @@ export default function NavBar() {
             ) : (
               <>
                 <span>Xin chào, {name}</span>
-                <Button size="sm" onClick={handleLogout}>
+                <Button size="sm">
+                  <Link to="/profile">Trang cá nhân</Link>
+                </Button>
+                <Button variant="outline" size="sm" onClick={handleLogout}>
                   Đăng xuất
                 </Button>
               </>

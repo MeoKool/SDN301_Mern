@@ -114,12 +114,12 @@ export default function Details({ data }) {
                               variant="ghost"
                               size="icon"
                               className="hover:bg-transparent text-muted-foreground hover:text-destructive"
-                              onClick={() =>
+                              onClick={() => {
                                 DeleteComment({
                                   idWatch: data._id,
                                   idComment: comment._id,
-                                })
-                              }
+                                });
+                              }}
                             >
                               <TrashIcon className="w-4 h-4" />
                               <span className="sr-only">Delete</span>

@@ -18,9 +18,8 @@ const GetDetailsWatches = () => {
         setIsDataLoaded(false);
       }
     };
-
     fetchWatchesDetails();
-  }, [data]);
+  }, [id]);
   if (!isDataLoaded) {
     return <div>Loading...</div>;
   }

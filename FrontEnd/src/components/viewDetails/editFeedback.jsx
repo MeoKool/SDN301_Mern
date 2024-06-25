@@ -1,4 +1,4 @@
-import { editFeeback } from "../../api/ApiConfig";
+import { editFeedback } from "../../api/ApiConfig";
 import { toast } from "../ui/use-toast";
 
 export default async function handleEditFeedback({
@@ -9,7 +9,7 @@ export default async function handleEditFeedback({
   idMember,
 }) {
   try {
-    const response = await editFeeback(
+    const response = await editFeedback(
       idWatch,
       idComment,
       rating,

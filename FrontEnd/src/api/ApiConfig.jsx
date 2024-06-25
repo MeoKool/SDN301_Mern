@@ -23,12 +23,15 @@ const createFeedback = (idMember, idWatch, rating, content) => {
 const deleteFeedback = (idWatch, idComment) => {
   return customAxios.delete(`feedback/${idWatch}/comments/${idComment}`);
 };
-const editFeeback = (idWatch, idComment, rating, content, idMember) => {
+const editFeedback = (idWatch, idComment, rating, content, idMember) => {
   return customAxios.put(`feedback/${idWatch}/comments/${idComment}`, {
     rating,
     content,
     author: idMember,
   });
+};
+const getUserInfo = (id) => {
+  return customAxios.get(`auth/getByMemberName/${id}`);
 };
 export {
   SignInAccount,
@@ -36,5 +39,6 @@ export {
   getWatchesById,
   createFeedback,
   deleteFeedback,
-  editFeeback,
+  editFeedback,
+  getUserInfo,
 };
