@@ -8,6 +8,7 @@ import DetailsWatches from "./pages/viewDetails";
 import Profile from "./pages/profile";
 import ChangePasswordUser from "./pages/changePassword";
 import EditProfileUser from "./pages/editUser";
+import DashBoardAdmin from "./pages/DashBoardMember";
 
 function App() {
   return (
@@ -19,7 +20,8 @@ function App() {
       <Route path="/details/:id" element={<DetailsWatches />} />
       <Route path="/profile/" element={<Profile />} />
       <Route path="/changePassword/" element={<ChangePasswordUser />} />
-      <Route path="//editProfile/" element={<EditProfileUser />} />
+      <Route path="/editProfile/" element={<EditProfileUser />} />
+      <Route path="/admin/" element={<DashBoardAdmin />} />
     </Routes>
   );
 }

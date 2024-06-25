@@ -2,6 +2,17 @@ import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../ui/button";
 import { toast } from "../ui/use-toast";
 import { useEffect, useState } from "react";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "../ui/alert-dialog";
 export default function NavBar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [name, setName] = useState("");
@@ -29,8 +40,8 @@ export default function NavBar() {
   };
 
   return (
-    <nav className="fixed inset-x-0 top-0 z-50 bg-white shadow-sm dark:bg-gray-950/90">
-      <div className="w-full max-w-7xl mx-auto px-4">
+    <nav className="sticky top-0 z-50 bg-white shadow-sm dark:bg-gray-950/90">
+      <div className="w-full max-w-7xl  mx-auto px-4 ">
         <div className="flex justify-between h-14 items-center">
           <Link to="/" className="flex items-center">
             <MountainIcon className="h-6 w-6" />
@@ -78,9 +89,24 @@ export default function NavBar() {
                 <Button size="sm">
                   <Link to="/profile">Trang cá nhân</Link>
                 </Button>
-                <Button variant="outline" size="sm" onClick={handleLogout}>
-                  Đăng xuất
-                </Button>
+                <AlertDialog>
+                  <AlertDialogTrigger asChild>
+                    <Button variant="outline">Đăng xuất</Button>
+                  </AlertDialogTrigger>
+                  <AlertDialogContent>
+                    <AlertDialogHeader>
+                      <AlertDialogTitle>
+                        Bạn có muốn đăng xuất?
+                      </AlertDialogTitle>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                      <AlertDialogCancel>Hủy</AlertDialogCancel>
+                      <AlertDialogAction onClick={handleLogout}>
+                        Xác nhận
+                      </AlertDialogAction>
+                    </AlertDialogFooter>
+                  </AlertDialogContent>
+                </AlertDialog>
               </>
             )}
           </div>

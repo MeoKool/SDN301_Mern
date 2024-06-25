@@ -40,6 +40,9 @@ const changePassword = (memberName, oldPassword, newPassword) => {
     newPassword,
   });
 };
+const GetAllMember = () => {
+  return customAxios.get(`auth/getAllMembers`);
+};
 export {
   SignInAccount,
   getAllWatches,
@@ -49,4 +52,5 @@ export {
   editFeedback,
   getUserInfo,
   changePassword,
+  GetAllMember,
 };
