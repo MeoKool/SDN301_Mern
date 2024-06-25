@@ -2,6 +2,7 @@ import { Button } from "../ui/button";
 import "../Card/styleCard.css";
 import { useNavigate } from "react-router-dom";
 export default function CardProduct(data) {
+  console.log(data);
   const navigate = useNavigate();
   const handleNavigate = () => {
     navigate(`/details/${data.data._id}`);
@@ -24,6 +25,7 @@ export default function CardProduct(data) {
       </div>
       <div className="p-6 space-y-4">
         <h3 className="text-xl font-bold">{data.data.watchName}</h3>
+        <h4 className="text-xl">Brand: {data.data.brand.brandName}</h4>
         <div className="flex items-center justify-between">
           <span className="text-2xl font-bold">
             {data.data.price.toLocaleString("en-US")}VNĐ

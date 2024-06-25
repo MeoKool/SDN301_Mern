@@ -7,6 +7,7 @@ import Register from "./pages/register";
 import DetailsWatches from "./pages/viewDetails";
 import Profile from "./pages/profile";
 import ChangePasswordUser from "./pages/changePassword";
+import EditProfileUser from "./pages/editUser";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <Route path="/details/:id" element={<DetailsWatches />} />
       <Route path="/profile/" element={<Profile />} />
       <Route path="/changePassword/" element={<ChangePasswordUser />} />
+      <Route path="//editProfile/" element={<EditProfileUser />} />
     </Routes>
   );
 }

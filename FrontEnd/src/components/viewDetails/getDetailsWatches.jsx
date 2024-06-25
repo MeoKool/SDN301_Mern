@@ -19,7 +19,7 @@ const GetDetailsWatches = () => {
       }
     };
     fetchWatchesDetails();
-  }, [id]);
+  }, [data]);
   if (!isDataLoaded) {
     return <div>Loading...</div>;
   }

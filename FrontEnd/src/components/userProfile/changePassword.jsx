@@ -68,14 +68,16 @@ function ChangePassword() {
           navigate("/profile");
         }
       } catch (err) {
-        if (err.response && err.response.status === 404) {
+        if (err.response && err.response.status === 400) {
           toast({
-            title: "Thất bại❌",
-            description: "Sai tài khoản hoặc mật khẩu.",
+            variant: "destructive",
+            title: "Thất bại",
+            description: err.response.data.message,
           });
         } else {
           toast({
-            title: "Lỗi❌",
+            variant: "destructive",
+            title: "Lỗi",
             description: "Có lỗi xảy ra, vui lòng thử lại sau.",
           });
         }
