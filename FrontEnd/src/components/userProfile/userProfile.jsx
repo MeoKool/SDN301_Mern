@@ -27,10 +27,10 @@ export default function UserProfile() {
   return (
     <div className="flex w-full max-w-7xl mx-auto">
       <SideBarProfile dataUser={dataUser} />
-      <div className="w-full bg-background rounded-2xl overflow-hidden shadow-lg">
+      <div className="w-full bg-background rounded-2xl overflow-hidden shadow-lg ml-3">
         <div className="relative h-32 bg-[#f1f5f9]"></div>
         <div className="pt-20 pb-6 px-6 text-center">
-          <h2 className="text-2xl font-bold">{dataUser.name}</h2>
+          <h2 className="text-2xl font-bold">Thông tin người dùng</h2>
         </div>
         <div className="border-t border-muted/20 px-6 py-4 grid grid-cols-2 gap-4">
           <div className="flex items-center gap-3">
@@ -38,9 +38,9 @@ export default function UserProfile() {
               <UserIcon className="w-5 h-5 text-muted-foreground" />
             </div>
             <div>
-              <p className="text-sm font-medium">Personal Info</p>
+              <p className="text-sm font-medium">{dataUser.name}</p>
               <p className="text-xs text-muted-foreground">
-                Age: 32 | Location: San Francisco
+                Năm sinh: {dataUser.yob}
               </p>
             </div>
           </div>

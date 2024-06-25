@@ -1,10 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../ui/button";
 import { toast } from "../ui/use-toast";
 import { useEffect, useState } from "react";
 export default function NavBar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [name, setName] = useState("");
+  const navigate = useNavigate();
   useEffect(() => {
     const accessToken = sessionStorage.getItem("accessToken");
     const userName = sessionStorage.getItem("name");
@@ -20,6 +21,7 @@ export default function NavBar() {
   const handleLogout = () => {
     sessionStorage.clear();
     setIsLoggedIn(false);
+    navigate("/");
     toast({
       title: "Thành công✅",
       description: "Bạn đã đăng xuất.",

@@ -33,6 +33,13 @@ const editFeedback = (idWatch, idComment, rating, content, idMember) => {
 const getUserInfo = (id) => {
   return customAxios.get(`auth/getByMemberName/${id}`);
 };
+const changePassword = (memberName, oldPassword, newPassword) => {
+  return customAxios.post(`auth/changePassword`, {
+    memberName,
+    oldPassword,
+    newPassword,
+  });
+};
 export {
   SignInAccount,
   getAllWatches,
@@ -41,4 +48,5 @@ export {
   deleteFeedback,
   editFeedback,
   getUserInfo,
+  changePassword,
 };

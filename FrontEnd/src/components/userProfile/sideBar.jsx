@@ -6,9 +6,8 @@ import {
 import { Link } from "react-router-dom";
 
 export default function SideBarProfile({ dataUser }) {
-  console.log(dataUser);
   return (
-    <div className="bg-background border-r border-muted/20 p-10 hidden md:block">
+    <div className="bg-background border-r border-muted/20 p-10 hidden md:block rounded-lg">
       <div className="flex flex-col gap-6">
         <div className="flex items-center gap-3">
           <Avatar className="w-12 h-12 ring-4 ring-background">

@@ -136,6 +136,20 @@ const watchesControllers = {
       res.status(500).json({ message: error.message });
     }
   },
+  //getWatchByBrand
+  getWatchByBrand: async (req, res) => {
+    try {
+      const watches = await Watches.find({ brand: req.params.id }).populate(
+        "brand"
+      );
+      if (watches.length === 0) {
+        return res.status(404).json({ message: "Watch not found" });
+      }
+      res.status(200).json(watches);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  },
 };
 
 module.exports = watchesControllers;
