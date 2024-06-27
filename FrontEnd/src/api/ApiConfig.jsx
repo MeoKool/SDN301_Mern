@@ -59,6 +59,9 @@ const CreateMember = (memberName, password, name, yob) => {
     yob,
   });
 };
+const DeleteWatch = (id) => {
+  return customAxios.delete(`watch/deleteWatch/${id}`);
+};
 export {
   CreateMember,
   SignInAccount,
@@ -72,4 +75,5 @@ export {
   GetAllMember,
   GetAllBrand,
   CreateBrand,
+  DeleteWatch,
 };

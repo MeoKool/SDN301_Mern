@@ -14,8 +14,9 @@ import {
   TableCell,
 } from "../../ui/table";
 import { DotsVerticalIcon } from "@radix-ui/react-icons";
+import DeleteWatches from "./DeleteWatches";
 export default function TableDashBoard({ dataWatches }) {
-  let data = dataWatches.data;
+  let data = dataWatches;
   return (
     <Table>
       <TableHeader>
@@ -37,7 +38,7 @@ export default function TableDashBoard({ dataWatches }) {
                   src={`http://localhost:5000/${product.image}`}
                   alt="Product Image"
                   width={80}
-                  style={{ borderRadius: "10px" }}
+                  style={{ borderRadius: "10px", maxHeight: "80px" }}
                 />
               </TableCell>
               <TableCell className="hidden md:table-cell">
@@ -58,7 +59,9 @@ export default function TableDashBoard({ dataWatches }) {
                       <FilePenIcon className="h-4 w-4 mr-2" />
                       Edit
                     </DropdownMenuItem>
-                    <DropdownMenuItem>
+                    <DropdownMenuItem
+                      onClick={() => DeleteWatches({ id: product._id })}
+                    >
                       <Trash2Icon className="h-4 w-4 mr-2" />
                       Delete
                     </DropdownMenuItem>
