@@ -16,7 +16,7 @@ const userSchema = new mongoose.Schema(
       required: true,
     },
     yob: {
-      type: Date,
+      type: Number,
       required: true,
     },
     isAdmin: {

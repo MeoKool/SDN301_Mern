@@ -7,12 +7,6 @@ const brandsSchema = new mongoose.Schema(
       required: [true, "Name is required"],
       unique: true,
     },
-    watches: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Watches",
-      },
-    ],
   },
   { timestamps: true }
 );

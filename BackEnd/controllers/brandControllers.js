@@ -16,7 +16,7 @@ const brandController = {
   //getAllBrands
   getAllBrands: async (req, res) => {
     try {
-      const brands = await Brand.find().populate("watches");
+      const brands = await Brand.find();
       res.status(200).json(brands);
     } catch (error) {
       res.status(500).json({ message: error.message });
@@ -25,12 +25,7 @@ const brandController = {
   //getByIDBrands
   getByIDBrands: async (req, res) => {
     try {
-      const brand = await Brand.findById(req.params.id).populate({
-        path: "watches",
-        populate: {
-          path: "brand",
-        },
-      });
+      const brand = await Brand.findById(req.params.id);
       res.status(200).json(brand);
     } catch (error) {
       res.status(500).json({ message: error.message });

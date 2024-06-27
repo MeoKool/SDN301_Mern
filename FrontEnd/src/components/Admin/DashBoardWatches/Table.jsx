@@ -37,6 +37,7 @@ export default function TableDashBoard({ dataWatches }) {
                   src={`http://localhost:5000/${product.image}`}
                   alt="Product Image"
                   width={80}
+                  style={{ borderRadius: "10px" }}
                 />
               </TableCell>
               <TableCell className="hidden md:table-cell">

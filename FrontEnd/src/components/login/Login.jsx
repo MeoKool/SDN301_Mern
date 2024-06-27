@@ -75,7 +75,7 @@ export default function LoginComponent() {
         </div>
         <Card>
           <form onSubmit={handleSubmitLogin}>
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-4 mt-4">
               <div className="space-y-2">
                 <Label htmlFor="memberName">Tên đăng nhập</Label>
                 <Input

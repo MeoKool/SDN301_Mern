@@ -51,7 +51,16 @@ const CreateBrand = (brandName) => {
     brandName,
   });
 };
+const CreateMember = (memberName, password, name, yob) => {
+  return customAxios.post(`auth/createUser`, {
+    memberName,
+    password,
+    name,
+    yob,
+  });
+};
 export {
+  CreateMember,
   SignInAccount,
   getAllWatches,
   getWatchesById,
