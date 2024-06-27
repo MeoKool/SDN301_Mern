@@ -1,9 +1,9 @@
-import { DeleteWatch } from "../../../api/ApiConfig";
+import { deleteMember } from "../../../api/ApiConfig";
 import { toast } from "../../ui/use-toast";
 
-export default async function DeleteWatches({ id }) {
+export default async function DeleteWatches({ memberName }) {
   try {
-    const response = await DeleteWatch(id);
+    const response = await deleteMember(memberName);
     if (response.status === 200) {
       toast({
         title: "Xóa thành công",

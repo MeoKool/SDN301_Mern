@@ -132,7 +132,7 @@ export default function DashBoardWatch() {
         </header>
         <main className="flex flex-col gap-4 p-4 md:gap-8 md:p-6 overflow-auto">
           <div className="border shadow-sm rounded-lg p-2">
-            <TableDashBoard dataWatches={dataWatch} />
+            <TableDashBoard dataWatches={dataWatch} dataBrand={dataBrand} />
           </div>
         </main>
       </div>

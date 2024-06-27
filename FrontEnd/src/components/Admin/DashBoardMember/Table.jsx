@@ -14,8 +14,10 @@ import {
   TableCell,
 } from "../../ui/table";
 import { DotsVerticalIcon } from "@radix-ui/react-icons";
+import DeleteWatches from "./DeleteMember";
 export default function TableDashBoard({ dataMembers }) {
   let data = dataMembers.data;
+  console.log(data);
   return (
     <Table>
       <TableHeader>
@@ -49,11 +51,11 @@ export default function TableDashBoard({ dataMembers }) {
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end">
-                    <DropdownMenuItem>
-                      <FilePenIcon className="h-4 w-4 mr-2" />
-                      Edit
-                    </DropdownMenuItem>
-                    <DropdownMenuItem>
+                    <DropdownMenuItem
+                      onClick={() =>
+                        DeleteWatches({ memberName: member.memberName })
+                      }
+                    >
                       <Trash2Icon className="h-4 w-4 mr-2" />
                       Delete
                     </DropdownMenuItem>

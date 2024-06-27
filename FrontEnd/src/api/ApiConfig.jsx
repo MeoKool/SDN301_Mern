@@ -23,6 +23,9 @@ const createFeedback = (idMember, idWatch, rating, content) => {
 const deleteFeedback = (idWatch, idComment) => {
   return customAxios.delete(`feedback/${idWatch}/comments/${idComment}`);
 };
+const deleteMember = (memberName) => {
+  return customAxios.delete(`/auth/deleteMember/${memberName}`);
+};
 const editFeedback = (idWatch, idComment, rating, content, idMember) => {
   return customAxios.put(`feedback/${idWatch}/comments/${idComment}`, {
     rating,
@@ -76,4 +79,5 @@ export {
   GetAllBrand,
   CreateBrand,
   DeleteWatch,
+  deleteMember,
 };
