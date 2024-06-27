@@ -43,6 +43,14 @@ const changePassword = (memberName, oldPassword, newPassword) => {
 const GetAllMember = () => {
   return customAxios.get(`auth/getAllMembers`);
 };
+const GetAllBrand = () => {
+  return customAxios.get(`brand/getAllBrands`);
+};
+const CreateBrand = (brandName) => {
+  return customAxios.post(`brand/createBrand`, {
+    brandName,
+  });
+};
 export {
   SignInAccount,
   getAllWatches,
@@ -53,4 +61,6 @@ export {
   getUserInfo,
   changePassword,
   GetAllMember,
+  GetAllBrand,
+  CreateBrand,
 };

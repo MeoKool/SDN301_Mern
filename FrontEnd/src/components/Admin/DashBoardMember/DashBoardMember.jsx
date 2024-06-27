@@ -3,6 +3,7 @@ import TableDashBoard from "./Table";
 import NavBarAdmin from "../navBarAdmin";
 import { useEffect, useState } from "react";
 import { GetAllMember } from "../../../api/ApiConfig";
+import Loading from "../../Loading";
 
 export default function DashBoardMember() {
   const [members, setMembers] = useState([]);
@@ -10,18 +11,25 @@ export default function DashBoardMember() {
   useEffect(() => {
     const fetchWatchesDetails = async () => {
       try {
-        const response = await GetAllMember();
-        setMembers(response);
-        setIsDataLoaded(true);
+        setTimeout(async () => {
+          const response = await GetAllMember();
+          setMembers(response);
+          setIsDataLoaded(true);
+        }, 1000);
       } catch (error) {
         console.error("Failed to fetch watch details:", error);
         setIsDataLoaded(false);
       }
     };
     fetchWatchesDetails();
-  }, []);
+    return () => clearTimeout(fetchWatchesDetails);
+  }, [members]);
   if (!isDataLoaded) {
-    return <div>Loading...</div>;
+    return (
+      <div>
+        <Loading />
+      </div>
+    );
   }
 
   return (

@@ -9,6 +9,8 @@ import Profile from "./pages/profile";
 import ChangePasswordUser from "./pages/changePassword";
 import EditProfileUser from "./pages/editUser";
 import DashBoardAdmin from "./pages/DashBoardMember";
+import DashBoardWatches from "./pages/DashBoardWatches";
+import DashBoardBrands from "./pages/DashBoardBrands";
 
 function App() {
   return (
@@ -22,6 +24,8 @@ function App() {
       <Route path="/changePassword/" element={<ChangePasswordUser />} />
       <Route path="/editProfile/" element={<EditProfileUser />} />
       <Route path="/admin/" element={<DashBoardAdmin />} />
+      <Route path="/admin/products" element={<DashBoardWatches />} />
+      <Route path="/admin/brands" element={<DashBoardBrands />} />
     </Routes>
   );
 }

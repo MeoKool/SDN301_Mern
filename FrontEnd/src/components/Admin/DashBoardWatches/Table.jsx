@@ -14,32 +14,36 @@ import {
   TableCell,
 } from "../../ui/table";
 import { DotsVerticalIcon } from "@radix-ui/react-icons";
-export default function TableDashBoard({ dataMembers }) {
-  let data = dataMembers.data;
+export default function TableDashBoard({ dataWatches }) {
+  let data = dataWatches.data;
   return (
     <Table>
       <TableHeader>
         <TableRow>
-          <TableHead>Member Name</TableHead>
-          <TableHead>Tên</TableHead>
-          <TableHead className="hidden md:table-cell">Năm sinh</TableHead>
-          <TableHead className="hidden md:table-cell">Loại tài khoản</TableHead>
-          <TableHead className="text-right"></TableHead>
+          <TableHead>Tên sản phẩm</TableHead>
+          <TableHead>Hình ảnh</TableHead>
+          <TableHead>Thương hiệu</TableHead>
+          <TableHead>Giá</TableHead>
+          <TableHead></TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
         {Array.isArray(data) ? (
-          data.map((member, index) => (
+          data.map((product, index) => (
             <TableRow key={index}>
-              <TableCell className="font-bold">{member.memberName}</TableCell>
+              <TableCell className="font-bold">{product.watchName}</TableCell>
               <TableCell className="hidden md:table-cell">
-                {member.name}
+                <img
+                  src={`http://localhost:5000/${product.image}`}
+                  alt="Product Image"
+                  width={80}
+                />
               </TableCell>
               <TableCell className="hidden md:table-cell">
-                {member.yob}
+                {product.brand.brandName}
               </TableCell>
-              <TableCell className="hidden md:table-cell font-medium text-green-500">
-                {member.isAdmin ? "admin" : "Thành viên"}
+              <TableCell className="hidden md:table-cell">
+                {product.price.toLocaleString("en-US")}VNĐ
               </TableCell>
               <TableCell className="text-right">
                 <DropdownMenu>

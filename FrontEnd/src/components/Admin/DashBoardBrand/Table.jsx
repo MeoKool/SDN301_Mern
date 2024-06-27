@@ -14,32 +14,24 @@ import {
   TableCell,
 } from "../../ui/table";
 import { DotsVerticalIcon } from "@radix-ui/react-icons";
-export default function TableDashBoard({ dataMembers }) {
-  let data = dataMembers.data;
+export default function TableDashBoard({ dataBrands }) {
+  let data = dataBrands.data;
   return (
     <Table>
       <TableHeader>
         <TableRow>
-          <TableHead>Member Name</TableHead>
-          <TableHead>Tên</TableHead>
-          <TableHead className="hidden md:table-cell">Năm sinh</TableHead>
-          <TableHead className="hidden md:table-cell">Loại tài khoản</TableHead>
-          <TableHead className="text-right"></TableHead>
+          <TableHead>STT</TableHead>
+          <TableHead className="text-center">Tên thương hiệu</TableHead>
+          <TableHead></TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
         {Array.isArray(data) ? (
-          data.map((member, index) => (
+          data.map((product, index) => (
             <TableRow key={index}>
-              <TableCell className="font-bold">{member.memberName}</TableCell>
-              <TableCell className="hidden md:table-cell">
-                {member.name}
-              </TableCell>
-              <TableCell className="hidden md:table-cell">
-                {member.yob}
-              </TableCell>
-              <TableCell className="hidden md:table-cell font-medium text-green-500">
-                {member.isAdmin ? "admin" : "Thành viên"}
+              <TableCell className=" font-bold">{index + 1}</TableCell>
+              <TableCell className="text-center font-bold">
+                {product.brandName}
               </TableCell>
               <TableCell className="text-right">
                 <DropdownMenu>

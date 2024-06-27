@@ -1,38 +1,48 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function NavBarAdmin() {
+  const navigate = useNavigate();
+  const handleCLickMember = () => {
+    navigate("/admin");
+  };
+  const handleCLickProduct = () => {
+    navigate("/admin/products");
+  };
+  const handleCLickBrands = () => {
+    navigate("/admin/brands");
+  };
   return (
     <div className="hidden border-r bg-muted/40 lg:block">
       <div className="flex flex-col gap-2">
         <div className="flex h-[60px] items-center px-6">
-          <Link href="#" className="flex items-center gap-2 font-semibold">
+          <div className="flex items-center gap-2 font-semibold">
             <UsersIcon className="h-6 w-6" />
             <span className="">Quản lí</span>
-          </Link>
+          </div>
         </div>
         <div className="flex-1">
           <nav className="grid items-start px-4 text-sm font-medium">
-            <Link
-              href="#"
-              className="flex items-center gap-3 rounded-lg px-3 py-2 text-primary bg-primary-foreground transition-all"
+            <div
+              onClick={handleCLickMember}
+              className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary hover:cursor-pointer"
             >
               <UsersIcon className="h-4 w-4" />
               Thành viên
-            </Link>
-            <Link
-              href="#"
-              className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
+            </div>
+            <div
+              onClick={handleCLickProduct}
+              className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary hover:cursor-pointer"
             >
               <FileIcon className="h-4 w-4" />
               Sản phẩm
-            </Link>
-            <Link
-              href="#"
-              className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
+            </div>
+            <div
+              onClick={handleCLickBrands}
+              className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary hover:cursor-pointer"
             >
               <SettingsIcon className="h-4 w-4" />
               Thương hiệu
-            </Link>
+            </div>
           </nav>
         </div>
       </div>
