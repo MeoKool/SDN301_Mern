@@ -36,7 +36,7 @@ export default function DashBoardBrand() {
     };
     fetchWatchesDetails();
     return () => clearTimeout(fetchWatchesDetails);
-  }, [data]);
+  }, []);
 
   const handleCreateClick = () => {
     SubmitCreateBrand({ brandName: brandName });

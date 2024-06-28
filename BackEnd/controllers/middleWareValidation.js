@@ -64,17 +64,18 @@ const validateUpdateMember = [
     .matches(/^[A-Za-z\s]+$/)
     .withMessage("Name must contain only letters and spaces"),
   body("yob")
-    .matches(/^(19|20)\d{2}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/)
-    .withMessage("yob must be in the format YYYY-MM-DD")
+    .isNumeric()
+    .withMessage("Year of birth must be a number")
+    .isLength({ min: 4, max: 4 })
+    .withMessage("Year of birth must be 4 digits long")
     .custom((value) => {
-      if (moment(value).isAfter(moment())) {
-        throw new Error("Date of birth cannot be in the future");
-      }
-      if (moment().diff(moment(value), "years") < 18) {
+      const age = currentYear - value;
+      if (age < 18) {
         throw new Error("You must be at least 18 years old");
       }
       return true;
-    }),
+    })
+    .withMessage("You must be at least 18 years old"),
   (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {

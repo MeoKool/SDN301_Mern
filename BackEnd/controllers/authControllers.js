@@ -142,13 +142,13 @@ const authControllers = {
     try {
       const { memberName } = req.params;
       const { name, yob } = req.body;
-      var yobDate = new Date(yob.split("-").reverse().join("-"));
+
       const member = await Member.findOne({ memberName });
       if (!member) {
         return res.status(404).json({ message: "Member not found" });
       }
       member.name = name;
-      member.yob = yobDate;
+      member.yob = yob;
       await member.save();
       res.status(200).json({ message: "Member updated successfully" });
     } catch (error) {

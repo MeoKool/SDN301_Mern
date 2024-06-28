@@ -11,7 +11,7 @@ import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import SideBarProfile from "./sideBar";
-import { updateUser, getUserInfo } from "../../api/ApiConfig";
+import { getUserInfo, UpdateMember } from "../../api/ApiConfig";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "../ui/use-toast";
 
@@ -44,20 +44,21 @@ function EditProfile() {
       });
       return;
     }
-    // try {
-    //   const response = await updateUser(userLogin, { memberName, yob });
-    //   if (response.status === 200) {
-    //     toast({
-    //       title: "Thành công, thông tin đã được cập nhật!✅",
-    //     });
-    //     navigate("/profile");
-    //   }
-    // } catch (err) {
-    //   toast({
-    //     title: "Lỗi❌",
-    //     description: "Có lỗi xảy ra, vui lòng thử lại sau.",
-    //   });
-    // }
+    try {
+      const response = await UpdateMember(userLogin, name, yob);
+      if (response.status === 200) {
+        toast({
+          title: "Thành công, thông tin đã được cập nhật!✅",
+        });
+        navigate("/profile");
+      }
+    } catch (err) {
+      console.log(err);
+      toast({
+        title: "Lỗi❌",
+        description: "Có lỗi xảy ra, vui lòng thử lại sau.",
+      });
+    }
   };
 
   useEffect(() => {

@@ -42,4 +42,5 @@ router.delete(
   middleWareControllers.verifyAdmin,
   watchesControllers.deleteWatch
 );
+router.get("/getWatchByBrandId/:id", watchesControllers.getWatchByBrand);
 module.exports = router;

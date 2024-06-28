@@ -142,6 +142,7 @@ const watchesControllers = {
       const watches = await Watches.find({ brand: req.params.id }).populate(
         "brand"
       );
+
       if (watches.length === 0) {
         return res.status(404).json({ message: "Watch not found" });
       }

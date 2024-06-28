@@ -16,6 +16,13 @@ export default function RegisterComponent() {
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (password !== confirmPassword) {
+      toast({
+        variant: "destructive",
+        title: "Mật khẩu không khớp",
+      });
+      return;
+    }
     try {
       const response = await CreateMember(memberName, password, name, yob);
       if (response.status === 200) {

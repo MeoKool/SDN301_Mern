@@ -14,6 +14,7 @@ import {
   TableCell,
 } from "../../ui/table";
 import { DotsVerticalIcon } from "@radix-ui/react-icons";
+import DeleteBrands from "./DeleteBrand";
 export default function TableDashBoard({ dataBrands }) {
   let data = dataBrands.data;
   return (
@@ -45,7 +46,9 @@ export default function TableDashBoard({ dataBrands }) {
                       <FilePenIcon className="h-4 w-4 mr-2" />
                       Edit
                     </DropdownMenuItem>
-                    <DropdownMenuItem>
+                    <DropdownMenuItem
+                      onClick={() => DeleteBrands({ brandId: product._id })}
+                    >
                       <Trash2Icon className="h-4 w-4 mr-2" />
                       Delete
                     </DropdownMenuItem>

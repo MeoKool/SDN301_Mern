@@ -65,6 +65,22 @@ const CreateMember = (memberName, password, name, yob) => {
 const DeleteWatch = (id) => {
   return customAxios.delete(`watch/deleteWatch/${id}`);
 };
+const UpdateMember = (memberName, name, yob) => {
+  return customAxios.put(`auth/updateMember/${memberName}`, {
+    memberName,
+    name,
+    yob,
+  });
+};
+const getByIdBrand = (id) => {
+  return customAxios.get(`watch/getWatchByBrandId/${id}`);
+};
+const SearchWatchByName = (name) => {
+  return customAxios.get(`watch/searchWatches/${name}`);
+};
+const DeleteBrand = (brandId) => {
+  return customAxios.delete(`brand/deleteBrand/${brandId}`);
+};
 export {
   CreateMember,
   SignInAccount,
@@ -80,4 +96,8 @@ export {
   CreateBrand,
   DeleteWatch,
   deleteMember,
+  UpdateMember,
+  getByIdBrand,
+  SearchWatchByName,
+  DeleteBrand,
 };
